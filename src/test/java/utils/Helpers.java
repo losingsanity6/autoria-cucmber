@@ -9,10 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 
-public class Utils {
+public class Helpers {
     private WebDriver driver;
-private final Logger log = Logger.getLogger(Utils.class);
-    public Utils(WebDriver driver) {
+private final Logger log = Logger.getLogger(Helpers.class);
+    public Helpers(WebDriver driver) {
         this.driver = driver;
     }
 

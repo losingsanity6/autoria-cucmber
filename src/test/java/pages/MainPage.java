@@ -1,12 +1,12 @@
 package pages;
 
-import utils.Utils;
+import utils.Helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
 import static utils.DriverInIt.driver;
 
-public class MainPage  {
+public class MainPage {
     private final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(MainPage.class);
     private final By usedCarDropdown = By.id("brandTooltipBrandAutocomplete-brand");
     private final By usedCarInput = By.id("brandTooltipBrandAutocompleteInput-brand");
@@ -44,17 +44,16 @@ public class MainPage  {
         driver.findElement(usedCarDropdown).click();
         log.info("Click on car brand dropdown");
         driver.findElement(usedCarInput).sendKeys(carBrand);
-        Utils utils = new Utils(driver);
+        Helpers utils = new Helpers(driver);
         utils.waitTimeout(autocompletedMarkField);
         log.info("input data to car brand dropdown");
         driver.findElement(autocompletedMarkField).click();
         log.info("car brand was chosen");
-
     }
 
 
     public void clickModel(String modelInp) {
-        Utils utils = new Utils(driver);
+        Helpers utils = new Helpers(driver);
         driver.findElement(model)
                 .click();
         driver.findElement(modelInput)
@@ -63,7 +62,6 @@ public class MainPage  {
         driver.findElement(modelAutocompleted)
                 .click();
         log.info("Car model was chosen");
-
     }
 
 
@@ -72,13 +70,11 @@ public class MainPage  {
         driver.findElement(regionInput).sendKeys(regionName);
         driver.findElement(regionAutocomplete).click();
         log.info("Region was chosen");
-
     }
 
     public void selectRegion(String regionName) {
         Select region = new Select(driver.findElement(regionLocator));
         region.selectByVisibleText(regionName);
-
     }
 
 
@@ -91,18 +87,15 @@ public class MainPage  {
         log.info("Year from was selected");
         yearTo.selectByVisibleText(yearToInput);
         log.info("Year to was selected");
-
-
     }
 
 
     public void clickSearchButton() {
-        Utils utils = new Utils(driver);
+        Helpers utils = new Helpers(driver);
         utils.waitTimeout(searchButton);
         driver.findElement(searchButton)
                 .click();
         log.info("Click on search button was perfomed");
-
     }
 
 
@@ -111,14 +104,12 @@ public class MainPage  {
         log.info("Data to price field was inputted");
         driver.findElement(priceFieldTo).sendKeys(priceFrom);
         log.info("Data to price field was inputted");
-
     }
 
 
     public void clickLoginButton() {
         driver.findElement(loginLocator).click();
         log.info("Click on login button was perfomed");
-
     }
 
     public void clickOnradioButton() {
@@ -129,7 +120,6 @@ public class MainPage  {
 
     public void clickAllForAutoDropdown() {
         driver.findElement(allForAutoDropdown).click();
-
     }
 
 }

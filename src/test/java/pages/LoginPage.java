@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import utils.DriverInIt;
-import utils.Utils;
+import utils.Helpers;
 
 public class LoginPage extends DriverInIt {
     private final static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(LoginPage.class);
@@ -61,7 +61,7 @@ public class LoginPage extends DriverInIt {
 
 
     public void LoginFacebook(String email, String pass) {
-        Utils utils = new Utils(driver);
+        Helpers utils = new Helpers(driver);
         utils.switchBetweenWindows(1);
         driver.findElement(facebookEmail).sendKeys(email);
         log.info("Data to e-mail field was inputted");

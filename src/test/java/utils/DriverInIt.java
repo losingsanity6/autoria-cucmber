@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.concurrent.TimeUnit;
 
 public class DriverInIt {
-    public static WebDriver driver = null;
+    public static WebDriver driver;
 
     public DriverInIt() {
     }
@@ -16,10 +16,10 @@ public class DriverInIt {
     public static WebDriver getDriver(String browser) {
         if (driver == null) {
             if (browser.equals("chrome")) {
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/browsers/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", ConstantVariables.driverPathChrome);
                 driver = new ChromeDriver();
-            } else if (browser.equals("ff")) {
-                System.setProperty("webdriver.gecko.driver", "src/main/resources/browsers/geckodriver.exe");
+            } else if (browser.equals("firefox")) {
+                System.setProperty("webdriver.gecko.driver", ConstantVariables.driverPathFirefox);
                 driver = new FirefoxDriver();
 
             }
@@ -29,5 +29,12 @@ public class DriverInIt {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
+    public static void closeWebBrowser(){
+        if (null != driver){
+            driver.quit();
+        }
+        driver = null;
+    }
+
 }
 
