@@ -1,5 +1,6 @@
 package pages;
 
+import utils.ConstantVariables;
 import utils.Helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
@@ -27,6 +28,9 @@ public class MainPage {
     private final By regionLocator = By.xpath("//*[@id='regionCenters']");
     private final By allForAutoDropdown = By.id("AllForAuto");
 
+    public void openMainPage(String url){
+        driver.get(url);
+    }
     public void clickExtendedSearchButton() {
         driver.findElement(extendedSeachButton)
                 .click();

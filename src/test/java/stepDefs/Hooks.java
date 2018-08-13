@@ -9,9 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 import static utils.DriverInIt.*;
 
-public class Hooks{
+public class Hooks {
 
-    @Given("I open home page")
     @Before
     public void setUp() {
         getDriver("chrome");
@@ -19,8 +18,9 @@ public class Hooks{
         driver.manage().timeouts().implicitlyWait(ConstantVariables.pageWaitTimeout, TimeUnit.SECONDS);
 
     }
- @After
-  public void tearDown(){
+
+    @After
+    public void tearDown() {
         closeWebBrowser();
- }
+    }
 }

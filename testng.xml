@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="FeatureFIle1" verbose="1" parallel="tests" thread-count="1" configfailurepolicy="continue">
+    <test name="Filters on Main page" annotations="JDK">
+        <classes>
+            <class name="RunnerTest"/>
+        </classes>
+    </test>
+</suite>
