@@ -16,6 +16,7 @@ public class DriverInIt {
     {
     }
 
+
     public static WebDriver getDriver(String browser) {
         if (driver == null) {
             if (browser.equals("chrome")) {

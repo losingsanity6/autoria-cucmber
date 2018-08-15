@@ -34,7 +34,7 @@ public class LoginPage extends DriverInIt {
 
     }
 
-
+//TODO: delete hardcode
     public LoginPage switchBetweenFrame() {
         driver.switchTo().frame("login_frame");
         log.info("Switched to login frame");

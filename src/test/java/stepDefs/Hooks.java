@@ -14,7 +14,6 @@ public class Hooks {
     @Before
     public void setUp() {
         getDriver("chrome");
-        driver.get(ConstantVariables.URL);
         driver.manage().timeouts().implicitlyWait(ConstantVariables.pageWaitTimeout, TimeUnit.SECONDS);
 
     }

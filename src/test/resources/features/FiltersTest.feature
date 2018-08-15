@@ -5,7 +5,8 @@ Feature: A description
 
 
   Scenario Outline: Car Filters test on Main page
-    Given I enter car brand "<carBrand>"
+    Given  I open homepage
+    When I enter car brand "<carBrand>"
     When I enter car model "<carModel>"
     When I click search button
     Then I see in header "<carBrand>"
@@ -15,14 +16,16 @@ Feature: A description
       | Volkswagen | Golf     |
 
   Scenario Outline:Test for price fields
-    Given I enter "<priceFrom>" to priceFrom field and "<priceTo>" to priceTo field
+    Given I open homepage
+    When I enter "<priceFrom>" to priceFrom field and "<priceTo>" to priceTo field
     When I click search button
     Then I see on Result page in price filter "<priceFrom>"
     Examples:
       | priceFrom | priceTo |
 
   Scenario Outline:Extended search for checkboxes
-    Given I click extended search button
+    Given I open homepage
+    When  I click extended search button
     When I choose checkbox "<carType>"
     And I click origin "<origin>"
     And I click Show button
@@ -30,3 +33,25 @@ Feature: A description
     Examples:
       | carType | origin |
       | Седан   | Англия |
+
+  Scenario Outline: click on Links
+    Given I open homepage
+    When I click on link that has a name "<linkName>"
+    Then I see in url "<linkName>"
+    Examples:
+      | linkName   |
+      | Volkswagen |
+      | Skoda      |
+      | Renault    |
+
+  Scenario Outline: Used car filters and no results Message
+    Given I open homepage
+    When I enter car brand "<carBrand>"
+    And I enter car model "<carModel>"
+    And I enter region "<region>"
+    And I enter "<priceTo>" to priceFrom field and "<priceFrom>" to priceTo field
+    And I click search button
+    Then I see message "<message>"
+    Examples:
+      | carBrand   | carModel | region  | priceFrom | priceTo | message                                                                |
+      | Volkswagen | Golf R   | Винница | 1000      | 6000    | "К сожалению мы не смогли найти предложений подходящих Вашему запросу" |
