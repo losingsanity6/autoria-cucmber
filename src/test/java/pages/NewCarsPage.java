@@ -27,7 +27,9 @@ public void clickElementByPartialLinkText(String carBrand){
         return driver.getCurrentUrl();
     }
 public String getUrl(){
+    log.info("Obtaining the url of current page");
          return driver.getCurrentUrl();
+
 }
 
 }

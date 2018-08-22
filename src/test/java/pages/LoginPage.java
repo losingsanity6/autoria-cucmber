@@ -16,6 +16,7 @@ public class LoginPage extends DriverInIt {
     private final By facebookPassword = By.id("pass");
     private final By facebookLoginButton = By.id("loginbutton");
     private final By errorLogin = By.xpath("//form[@id='login-form']/div/p[@class=error login-link]");
+    private final String loginFrame = "login_frame";
 
 
     public LoginPage LoginInput(String password, String number) {
@@ -34,9 +35,9 @@ public class LoginPage extends DriverInIt {
 
     }
 
-//TODO: delete hardcode
+
     public LoginPage switchBetweenFrame() {
-        driver.switchTo().frame("login_frame");
+        driver.switchTo().frame(loginFrame);
         log.info("Switched to login frame");
         return this;
     }
@@ -50,18 +51,20 @@ public class LoginPage extends DriverInIt {
 
 
     public String Message() {
+        log.info("Getting text from no profile message");
         return driver.findElement(noProfileMessage).getAttribute("innerHTML");
 
     }
 
 
     public String invalidPhoneMessage() {
+        log.info("Getting text from mess");
         return driver.findElement(errorLogin).getAttribute("innerHTML");
     }
 
 
     public void LoginFacebook(String email, String pass) {
-        Helpers utils = new Helpers(driver);
+        Helpers utils = new Helpers();
         utils.switchBetweenWindows(1);
         driver.findElement(facebookEmail).sendKeys(email);
         log.info("Data to e-mail field was inputted");

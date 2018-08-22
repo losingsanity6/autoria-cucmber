@@ -1,5 +1,6 @@
 package stepDefs;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -10,6 +11,7 @@ import pages.MainPage;
 import pages.NewCarsPage;
 import pages.ResultPage;
 import utils.ConstantVariables;
+import utils.Helpers;
 
 import static utils.DriverInIt.getDriver;
 import static utils.DriverInIt.openPage;
@@ -43,7 +45,7 @@ public class MainPageFilters {
     public void headerContains(String carBrand) {
         ResultPage resultPage = new ResultPage();
         System.out.println(resultPage.headerText());
-        Assert.assertTrue(resultPage.headerText().contains(carBrand));
+        Assert.assertTrue(resultPage.headerText().contains(carBrand), "Assertation failed");
     }
 
     @Given("^I enter \"([^\"]*)\" to priceFrom field and \"([^\"]*)\" to priceTo field")
@@ -91,17 +93,18 @@ public class MainPageFilters {
     @Then("^I see in url \"([^\"]*)\"$")
     public void checkUrl(String linkName) {
         NewCarsPage newCarsPage = new NewCarsPage();
-        Assert.assertTrue(newCarsPage.getUrl().contains(linkName.toLowerCase()));
+        Assert.assertTrue(newCarsPage.getUrl().contains(linkName.toLowerCase()), "Assertation failed");
     }
     @And("^I enter region \"([^\"]*)\"$")
     public void enterRegion(String region){
         MainPage mainPage = new MainPage();
         mainPage.clickRegion(region);
     }
-    @Then("^I see message \"([^\"]*)\"$")
-    public void assertMessage(String message){
+
+    @Then("^I see no results message \"([^\"]*)\"$")
+    public void iSeeNoResultsMessage(String message){
         ResultPage resultPage = new ResultPage();
-        Assert.assertTrue(resultPage.getTextFromNoResultsMessage().contains(message));
+        Assert.assertEquals(resultPage.getTextFromNoResultsMessage(), message, "Assertation failed");
     }
 }
 

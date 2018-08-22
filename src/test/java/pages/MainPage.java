@@ -28,18 +28,20 @@ public class MainPage {
     private final By regionLocator = By.xpath("//*[@id='regionCenters']");
     private final By allForAutoDropdown = By.id("AllForAuto");
 
-    public void openMainPage(String url){
+    public void openMainPage(String url) {
         driver.get(url);
     }
+
     public void clickExtendedSearchButton() {
         driver.findElement(extendedSeachButton)
                 .click();
-
+        log.info("CLick on extended search buttin was perfomed");
     }
 
     public void clickOnElementByLinkText(String linktext) {
         driver.findElement(By.linkText(linktext))
                 .click();
+        log.info("Click on link was perfomed");
 
     }
 
@@ -48,7 +50,7 @@ public class MainPage {
         driver.findElement(usedCarDropdown).click();
         log.info("Click on car brand dropdown");
         driver.findElement(usedCarInput).sendKeys(carBrand);
-        Helpers utils = new Helpers(driver);
+        Helpers utils = new Helpers();
         utils.waitTimeout(autocompletedMarkField);
         log.info("input data to car brand dropdown");
         driver.findElement(autocompletedMarkField).click();
@@ -57,11 +59,13 @@ public class MainPage {
 
 
     public void clickModel(String modelInp) {
-        Helpers utils = new Helpers(driver);
+        Helpers utils = new Helpers();
         driver.findElement(model)
                 .click();
+        log.info("Click on field model  was perfomed");
         driver.findElement(modelInput)
                 .sendKeys(modelInp);
+        log.info("The car model was inputted to model field");
         utils.waitTimeout(modelAutocompleted);
         driver.findElement(modelAutocompleted)
                 .click();
@@ -95,7 +99,7 @@ public class MainPage {
 
 
     public void clickSearchButton() {
-        Helpers utils = new Helpers(driver);
+        Helpers utils = new Helpers();
         utils.waitTimeout(searchButton);
         driver.findElement(searchButton)
                 .click();
@@ -118,7 +122,7 @@ public class MainPage {
 
     public void clickOnradioButton() {
         driver.findElement(newCarsRadioButton).click();
-
+        log.info("Click on radio button was perfomed");
 
     }
 

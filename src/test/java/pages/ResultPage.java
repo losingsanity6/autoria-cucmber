@@ -1,5 +1,6 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import utils.Helpers;
 import org.openqa.selenium.By;
 
@@ -14,7 +15,7 @@ public class ResultPage {
     private final By noAdsMessage = By.id("emptyResultsNotFoundBlock");
     private final By newCarsMessage = By.xpath("//*[@id='searchResult']/div[@class='warning middle']/h2");
     private final By header = By.xpath("//*[@id=\"headerPage\"]/h1");
-
+private final Logger log = Logger.getLogger(ResultPage.class);
 
     public String getTitle() {
         return driver.getTitle();
@@ -22,8 +23,9 @@ public class ResultPage {
 
 
     public String getH1Text() {
-        Helpers utils = new Helpers(driver);
+        Helpers utils = new Helpers();
         utils.waitTimeout(h1);
+        log.info("Obtaining text from h1");
         return driver.findElement(h1).getAttribute("innerHTML");
     }
 
@@ -34,20 +36,23 @@ public class ResultPage {
 
 
     public String getTextFromPriceInputFrom() {
-        Helpers utils = new Helpers(driver);
+        Helpers utils = new Helpers();
         utils.ScrollWindow(priceInputFrom);
+        log.info("Obraining text from price from filter");
         return driver.findElement(priceInputFrom).getAttribute("value");
     }
 
 
     public String getInputFromPriceFieldTo() {
-        Helpers utils = new Helpers(driver);
+        Helpers utils = new Helpers();
         utils.ScrollWindow(priceInputTo);
+        log.info("Obtaining text from price To filter");
         return driver.findElement(priceInputTo).getAttribute("value");
     }
 
 
     public String getTextFromNoResultsMessage() {
+        log.info("Obtaining text from no results message");
         return driver.findElement(noAdsMessage).getText();
     }
 
@@ -56,6 +61,7 @@ public class ResultPage {
     }
 
     public String headerText() {
+        log.info("Obtaining text from header");
         return driver.findElement(header).getAttribute("innerHTML");
     }
 }

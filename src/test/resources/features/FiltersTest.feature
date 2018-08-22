@@ -1,7 +1,7 @@
 # new feature
 # Tags: optional
 
-Feature: A description
+Feature: Tests on Main page
 
 
   Scenario Outline: Car Filters test on Main page
@@ -51,7 +51,7 @@ Feature: A description
     And I enter region "<region>"
     And I enter "<priceTo>" to priceFrom field and "<priceFrom>" to priceTo field
     And I click search button
-    Then I see message "<message>"
+    Then I see no results message "<message>"
     Examples:
-      | carBrand   | carModel | region  | priceFrom | priceTo | message                                                                |
-      | Volkswagen | Golf R   | Винница | 1000      | 6000    | "К сожалению мы не смогли найти предложений подходящих Вашему запросу" |
+      | carBrand   | carModel | region  | priceFrom | priceTo | message                                                              |
+      | Volkswagen | Golf R   | Винница | 1000      | 6000    | К сожалению, по Вашему запросу Объявлений не найден. |
