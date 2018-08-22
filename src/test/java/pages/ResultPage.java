@@ -15,7 +15,7 @@ public class ResultPage {
     private final By noAdsMessage = By.id("emptyResultsNotFoundBlock");
     private final By newCarsMessage = By.xpath("//*[@id='searchResult']/div[@class='warning middle']/h2");
     private final By header = By.xpath("//*[@id=\"headerPage\"]/h1");
-private final Logger log = Logger.getLogger(ResultPage.class);
+    private final Logger log = Logger.getLogger(ResultPage.class);
 
     public String getTitle() {
         return driver.getTitle();

@@ -15,7 +15,7 @@ import static utils.DriverInIt.getDriver;
 import static utils.DriverInIt.driver;
 
 public class Helpers {
-private final Logger log = Logger.getLogger(Helpers.class);
+    private final Logger log = Logger.getLogger(Helpers.class);
 
     public void ScrollWindow(By element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -28,10 +28,12 @@ private final Logger log = Logger.getLogger(Helpers.class);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
         log.info("Wait for element to be visible");
     }
-    public void switchBetweenWindows(int window){
+
+    public void switchBetweenWindows(int window) {
         ArrayList<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(windowHandles.get(window));
     }
+
     public void methodToChooseCheckboxes(By element, String textToCompare) {
         List<WebElement> Checkbox = driver.findElements(element);
         for (int i = 0; i < Checkbox.size(); i++) {

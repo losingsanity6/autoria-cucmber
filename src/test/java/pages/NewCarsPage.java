@@ -12,24 +12,24 @@ public class NewCarsPage extends DriverInIt {
     private final Logger log = Logger.getLogger(NewCarsPage.class);
 
 
-
     public void clickOnCarfindElementByLink(String linkText) {
         driver.findElement(By.linkText(linkText)).click();
     }
 
-public void clickElementByPartialLinkText(String carBrand){
+    public void clickElementByPartialLinkText(String carBrand) {
         driver.findElement(By.partialLinkText(carBrand)).click();
-}
+    }
 
     public String clickFirstImage() {
         driver.findElement(firstImage).click();
         log.info("Click on first image on Golf page was perfomed");
         return driver.getCurrentUrl();
     }
-public String getUrl(){
-    log.info("Obtaining the url of current page");
-         return driver.getCurrentUrl();
 
-}
+    public String getUrl() {
+        log.info("Obtaining the url of current page");
+        return driver.getCurrentUrl();
+
+    }
 
 }

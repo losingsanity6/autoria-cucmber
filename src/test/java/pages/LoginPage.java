@@ -29,6 +29,8 @@ public class LoginPage extends DriverInIt {
 
 
     public LoginPage loginViaFacebook() {
+        Helpers helpers = new Helpers();
+        helpers.ScrollWindow(FacebookLocator);
         driver.findElement(FacebookLocator).click();
         log.info("Click on facebook login button was perfomed");
         return this;

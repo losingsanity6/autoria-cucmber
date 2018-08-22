@@ -95,14 +95,15 @@ public class MainPageFilters {
         NewCarsPage newCarsPage = new NewCarsPage();
         Assert.assertTrue(newCarsPage.getUrl().contains(linkName.toLowerCase()), "Assertation failed");
     }
+
     @And("^I enter region \"([^\"]*)\"$")
-    public void enterRegion(String region){
+    public void enterRegion(String region) {
         MainPage mainPage = new MainPage();
         mainPage.clickRegion(region);
     }
 
     @Then("^I see no results message \"([^\"]*)\"$")
-    public void iSeeNoResultsMessage(String message){
+    public void iSeeNoResultsMessage(String message) {
         ResultPage resultPage = new ResultPage();
         Assert.assertEquals(resultPage.getTextFromNoResultsMessage(), message, "Assertation failed");
     }

@@ -8,17 +8,18 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 import pages.LoginPage;
 import utils.ConstantVariables;
+import utils.Helpers;
 
 import static utils.DriverInIt.openPage;
 
 public class LoginTest {
     @Given("^I open login Page$")
     public void iOpenLoginPage() {
-       openPage(ConstantVariables.loginPage);
+        openPage(ConstantVariables.loginPage);
     }
 
     @When("^I click facebook login button$")
-    public void iClickFacebookLoginButton()  {
+    public void iClickFacebookLoginButton() {
         LoginPage loginPage = new LoginPage();
         loginPage.switchBetweenFrame();
         loginPage.loginViaFacebook();
@@ -26,9 +27,9 @@ public class LoginTest {
     }
 
     @And("^I enter facebook credentials \"([^\"]*)\", \"([^\"]*)\"$")
-    public void iEnterFacebookCredentials(String email, String password)  {
-       LoginPage loginPage = new LoginPage();
-       loginPage.LoginFacebook(email, password);
+    public void iEnterFacebookCredentials(String email, String password) {
+        LoginPage loginPage = new LoginPage();
+        loginPage.LoginFacebook(email, password);
     }
 
 
@@ -36,7 +37,7 @@ public class LoginTest {
     public void iSeeMessageMessageOnLoginPage(String message) {
         LoginPage loginPage = new LoginPage();
         loginPage.switchBetweenFrame();
-        Assert.assertTrue( loginPage.Message().contains(message));
+        Assert.assertTrue(loginPage.Message().contains(message));
 
     }
 }

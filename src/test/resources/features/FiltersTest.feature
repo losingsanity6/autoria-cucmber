@@ -54,4 +54,4 @@ Feature: Tests on Main page
     Then I see no results message "<message>"
     Examples:
       | carBrand   | carModel | region  | priceFrom | priceTo | message                                                              |
-      | Volkswagen | Golf R   | Винница | 1000      | 6000    | К сожалению, по Вашему запросу Объявлений не найден. |
+      | Volkswagen | Golf R   | Винница | 1000      | 6000    | К сожалению, по Вашему запросу Объявлений не найдено. |

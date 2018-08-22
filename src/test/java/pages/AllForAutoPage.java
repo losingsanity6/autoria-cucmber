@@ -14,10 +14,10 @@ public class AllForAutoPage {
         this.driver = driver;
     }
 
-   public AllForAutoPage clickOnLinkText(String linkText){
+    public AllForAutoPage clickOnLinkText(String linkText) {
         driver.findElement(By.linkText(linkText));
         return this;
-   }
+    }
 
     public final void selectCarBrand(String carBrand) {
         Select brandCar = new Select(driver.findElement(carBrandLocator));
