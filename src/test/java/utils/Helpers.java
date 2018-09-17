@@ -24,7 +24,7 @@ public class Helpers {
     }
 
     public void waitTimeout(By element) {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, 40);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(element)));
         log.info("Wait for element to be visible");
     }

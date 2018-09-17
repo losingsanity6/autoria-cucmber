@@ -17,7 +17,7 @@ public class MainPage {
     private final By priceFieldTo = By.id("priceTo");
     private final By extendedSeachButton = By.xpath("//*[@id='mainSearchForm']/div[@class='footer-form']/a");
     private final By newCarsRadioButton = By.xpath("//*[@id='mainSearchForm']/div[@class='nav']/label[@for='naRadioType']");
-    private final By autocompletedMarkField = By.xpath("//*[@id='brandTooltipBrandAutocomplete-brand']/ul/li/a");
+    private final By autocompletedMarkField = By.xpath("//*[contain(@id,'%s')]/ul/li/a");
     private final By model = By.id("brandTooltipBrandAutocomplete-model");
     private final By modelInput = By.id("brandTooltipBrandAutocompleteInput-model");
     private final By modelAutocompleted = By.xpath("//*[@id='brandTooltipBrandAutocomplete-model']/ul/li/a");
@@ -27,10 +27,13 @@ public class MainPage {
     private final By loginLocator = By.linkText("Вход в кабинет");
     private final By regionLocator = By.xpath("//*[@id='regionCenters']");
     private final By allForAutoDropdown = By.id("AllForAuto");
-
+    private final String filtersLocator = "//div[contains(@class, 'item-column')]//div[@class='m-indent']/div[contains(@id, '%s')]";
+    private final String filtersInput = "//div[contains(@class, 'item-column')]//div[@class='m-indent']/div/input[contains(@id, '%s')]";
+    private final String autocomplete = "//div[contains(@class, 'item-column')]//div[contains(@id, '%s')]/ul/li/a";
     public void openMainPage(String url) {
         driver.get(url);
     }
+
 
     public void clickExtendedSearchButton() {
         driver.findElement(extendedSeachButton)
@@ -44,47 +47,16 @@ public class MainPage {
         log.info("Click on link was perfomed");
 
     }
-
-    public void chooseCarBrand(String carBrand) {
-
-        driver.findElement(usedCarDropdown).click();
+    public void inputDataToFilter(String parameterName, String data){
+        driver.findElement(By.xpath(String.format(filtersLocator, parameterName))).click();
         log.info("Click on car brand dropdown");
-        driver.findElement(usedCarInput).sendKeys(carBrand);
+        driver.findElement(By.xpath(String.format(filtersInput,parameterName))).sendKeys(data);
         Helpers utils = new Helpers();
-        utils.waitTimeout(autocompletedMarkField);
+        utils.waitTimeout(By.xpath(String.format(autocomplete, parameterName)));
         log.info("input data to car brand dropdown");
-        driver.findElement(autocompletedMarkField).click();
+        driver.findElement(By.xpath(String.format(autocomplete, parameterName))).click();
         log.info("car brand was chosen");
     }
-
-
-    public void clickModel(String modelInp) {
-        Helpers utils = new Helpers();
-        driver.findElement(model)
-                .click();
-        log.info("Click on field model  was perfomed");
-        driver.findElement(modelInput)
-                .sendKeys(modelInp);
-        log.info("The car model was inputted to model field");
-        utils.waitTimeout(modelAutocompleted);
-        driver.findElement(modelAutocompleted)
-                .click();
-        log.info("Car model was chosen");
-    }
-
-
-    public void clickRegion(String regionName) {
-        driver.findElement(region).click();
-        driver.findElement(regionInput).sendKeys(regionName);
-        driver.findElement(regionAutocomplete).click();
-        log.info("Region was chosen");
-    }
-
-    public void selectRegion(String regionName) {
-        Select region = new Select(driver.findElement(regionLocator));
-        region.selectByVisibleText(regionName);
-    }
-
 
     public void selectYearFrom(String yearFromInput, String yearToInput) {
         Select yearFrom = new Select(driver.findElement(By.id("yearFrom")));
@@ -130,4 +102,7 @@ public class MainPage {
         driver.findElement(allForAutoDropdown).click();
     }
 
+    private By inputFilter(String inputType){
+        return By.xpath(String.format(filtersInput,inputType));
+    }
 }

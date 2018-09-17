@@ -10,14 +10,15 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverInIt {
     public static WebDriver driver;
-    public static String driverType = ConstantVariables.browser;
+    private static String driverType = ConstantVariables.browser;
 
-    public DriverInIt() { }
+    public DriverInIt() {
+    }
 
     public static WebDriver getDriver() {
 
         if (driverType != null) {
-            if (driverType.equals("chrome")){
+            if (driverType.equals("chrome")) {
                 System.setProperty("webdriver.chrome.driver", ConstantVariables.driverPathChrome);
                 driver = new ChromeDriver();
             } else if (driverType.equals("ff")) {
@@ -33,7 +34,7 @@ public class DriverInIt {
 
 
     public static void closeWebBrowser() {
-        if (null != driver) {
+        if (driver != null) {
             driver.quit();
         }
         driver = null;

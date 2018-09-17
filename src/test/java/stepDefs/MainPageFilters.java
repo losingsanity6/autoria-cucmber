@@ -5,33 +5,23 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.it.Ma;
 import org.testng.Assert;
 import pages.ExtendedSearchPage;
 import pages.MainPage;
 import pages.NewCarsPage;
 import pages.ResultPage;
 import utils.ConstantVariables;
+import utils.DriverInIt;
 import utils.Helpers;
 
 import static utils.DriverInIt.getDriver;
 import static utils.DriverInIt.openPage;
 
-public class MainPageFilters {
+public class MainPageFilters extends DriverInIt {
     @Given("I open homepage")
     public void openHomePage() {
         openPage(ConstantVariables.URL);
-    }
-
-    @When("^I enter car brand \"([^\"]*)\"$")
-    public void carBrandFilter(String carBrand) {
-        MainPage mainPage = new MainPage();
-        mainPage.chooseCarBrand(carBrand);
-    }
-
-    @When("^I enter car model \"([^\"]*)\"$")
-    public void carModel(String carModel) {
-        MainPage mainPage = new MainPage();
-        mainPage.clickModel(carModel);
     }
 
     @When("^I click search button")
@@ -96,17 +86,42 @@ public class MainPageFilters {
         Assert.assertTrue(newCarsPage.getUrl().contains(linkName.toLowerCase()), "Assertation failed");
     }
 
-    @And("^I enter region \"([^\"]*)\"$")
-    public void enterRegion(String region) {
-        MainPage mainPage = new MainPage();
-        mainPage.clickRegion(region);
-    }
-
     @Then("^I see no results message \"([^\"]*)\"$")
     public void iSeeNoResultsMessage(String message) {
         ResultPage resultPage = new ResultPage();
-        Assert.assertEquals(resultPage.getTextFromNoResultsMessage(), message, "Assertation failed");
+        Assert.assertEquals(resultPage.getTextFromNoResultsMessage().toLowerCase(), message.toLowerCase(), "Assertation failed");
+    }
+
+    @When("^I change language to \"([^\"]*)\"$")
+    public void iChangeLanguageTo(String languageLink) {
+        MainPage mainPage = new MainPage();
+        mainPage.clickOnElementByLinkText(languageLink);
+    }
+
+    @Then("^I see in title \"([^\"]*)\" and in url \"([^\"]*)\"$")
+    public void iSeeInTitleAndInUrl(String title, String url) {
+        Assert.assertTrue(driver.getCurrentUrl().equals(url) && driver.getTitle().equals(title));
+
+    }
+
+    @When("^i click on link of other ria service in header \"([^\"]*)\"$")
+    public void iClickOnLinkOfOtherRiaServiceInHeader(String serviceName) {
+        MainPage mainPage = new MainPage();
+        mainPage.clickOnElementByLinkText(serviceName);
+    }
+
+    @Then("^i see new tab opened and check url \"([^\"]*)\" and i see in title \"([^\"]*)\"$")
+    public void iSeeNewTabOpenedAndCheckUrlAndISeeInTitle(String url, String title) {
+        Helpers helpers = new Helpers();
+        helpers.switchBetweenWindows(1);
+        Assert.assertTrue(driver.getCurrentUrl().equals(url) && driver.getTitle().equals(title));
+    }
+
+    @When("^I enter to filter dropdown named - \"([^\"]*)\" data - \"([^\"]*)\"$")
+            public void iEnterData(String parameterName, String data){
+        MainPage mainPage = new MainPage();
+        mainPage.inputDataToFilter(parameterName, data);
+
     }
 }
-
 
